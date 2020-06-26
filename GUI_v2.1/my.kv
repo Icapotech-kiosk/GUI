@@ -1,0 +1,362 @@
+#:import datetime datetime
+#:import Clock kivy.clock.Clock
+#:import Video kivy.uix.video
+<LogoWindow>:
+    name : "logo"
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols: 1
+        
+        Image:
+            source:'/home/pi/logoIC.jpg'
+        
+            
+<MainWindow>:
+    
+    time1 : time1
+    time2 : time2
+
+    
+    name: "main"
+    
+    GridLayout:
+        cols: 1
+        padding_bottom: 10
+        
+        #canvas.before:
+            #Rectangle:
+                #pos: self.pos
+                #size: self.size
+                #source: '/home/pi/Downloads/ICLogo.png'
+        
+        GridLayout:
+            cols: 3
+            size: root.width*0.3, root.height*0.3
+            row_default_height: 30
+            row_force_default: True
+            center: root.width /2, root.height/2
+            size_hint_y: 0.06
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                id : time2
+                #text: datetime.datetime.now().strftime('%H:%M:%S')
+                #text: str(root.text)
+                text: "{}".format(root.time2)
+            Label:
+                text: "iCapotech"
+            
+            Label:
+                id : time1
+                text:"{}".format(root.time1)
+        GridLayout:
+            cols: 1
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Image:
+                #source: '/home/pi/My_Post.png'
+                source: '/home/pi/wel_come.jpg'
+                allow_strech: True
+                #id: greet
+                #text: "Welcome"
+                #color: 0,0,0,1
+                #font_size:'70'
+                #size_hint: (15,15)   #for center alignment
+            
+                #pos: (500,500)
+            
+                
+            
+            
+
+
+
+<SecondWindow>:
+    t:instruction
+    time_sec1 : time_sec1
+    time_sec2 : time_sec2
+    name: "second"
+    canvas.before:
+        Color:
+            rgba: 1, 0.949, 0.78, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        id: one
+        cols: 1
+        padding_bottom: 10
+        GridLayout:
+            id: two
+            cols: 3
+            size: root.width*0.8, root.height*0.8
+            row_default_height: 30
+            #row_force_default: True
+            size_hint: (0.1,0.1)
+            center: root.width /5, root.height/5
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                id : time_sec2
+                #text: datetime.datetime.now().strftime('%H:%M:%S')
+                #text: str(root.text)
+                text: "{}".format(root.time_sec2)
+            Label:
+                text: "iCapotech"
+            
+            Label:
+                id : time_sec1
+                text:"{}".format(root.time_sec1)
+        
+        Label:
+            size_hint: (0.1,0.1)
+            
+        BoxLayout:
+            id: three
+            orientation: 'horizontal'
+            size_hint : (0.15,0.15)
+            Label:
+                size_hint_x: 1.15
+            StrokeButton:
+                id: instruction
+                text: "Look into the camera & \n     Align your face"
+                #text: root.one.three.instruction
+                color: 0,0,0,1
+                font_size: '20'
+                back_color: (0.157,0.455,0.753,1.0)
+                border: (10,10,10,10)
+                #border_radius: [18,18,2,2]
+                
+            Label:
+                size_hint_x: 1.15
+        Label:
+            size_hint: (0.05,0.05)
+            
+        BoxLayout:
+            orientation: 'horizontal'
+            #size_hint : (0.5,0.5)
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.5
+                Label:
+                    #source : '/home/pi/Downloads/ICLogo.png'
+                    size_hint: (0.3,0.3)
+                Image:
+                    source : '/home/pi/Downloads/LTLogo.png'
+                    #size_hint: (0.5,0.5)
+                Label:
+                    #source : '/home/pi/Downloads/ICLogo.png'
+                    size_hint: (0.3,0.3)
+            Image:
+                id: cam
+                texture:
+                allow_stretch: True
+                texture_size:
+           # Camera:
+              #  id: camera
+              #  index: -1
+               # resolution: (1920, 1080)
+               # play: True
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.5
+                padding: 60
+                Label:
+                    #source : '/home/pi/Downloads/ICLogo.png'
+                    size_hint: (0.3,0.3)
+                Image:
+                    source : '/home/pi/Downloads/ICLogo.png'
+                    
+                    #size_hint: (0.5,0.5)
+                Label:
+                    #source : '/home/pi/Downloads/ICLogo.png'
+                    size_hint: (0.3,0.3)
+                #size: self.texture_size
+                #valign: 'center'
+                
+        Label:
+            size_hint: (0.05,0.05)
+            
+        GridLayout:
+            cols: 3
+            size_hint : (0.15,0.15)
+            Label:
+                #text: "hello"
+                size_hint_x: 0.3
+                #on_press: camera.play = not camera.play
+            SmoothButton:
+                id: opmsg
+                text: "Measuring Your Body Temperature..."
+                color: 0,0,0,1
+                #text: "Body Temperature: 37 deg Celcius"
+                width: 300
+                font_size: '30'
+                back_color: (0.157,0.455,0.753,1.0)
+                border_radius: [2,2,18,18]
+                #background_normal: ''
+                on_release: root.btn()
+            Label:
+                #text: "gello"
+                size_hint_x: 0.3
+                
+        Label:
+            size_hint : (0.1,0.1)
+            
+        
+<ThirdWindow>:
+    
+    time1 : time1
+    time2 : time2
+
+    canvas.before:
+        Color:
+            rgba: 0.2, 0.6, 1, 1
+            #rgba: 0.902, 0.721, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "third"
+
+    
+    GridLayout:
+        cols: 1
+        padding_bottom: 10
+        
+        #canvas.before:
+            #Rectangle:
+                #pos: self.pos
+                #size: self.size
+                #source: '/home/pi/Downloads/ICLogo.png'
+        
+        GridLayout:
+            cols: 3
+            size: root.width*0.3, root.height*0.3
+            row_default_height: 30
+            row_force_default: True
+            size_hint: (0.1,0.1)
+            center: root.width /2, root.height/2
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                id : time2
+                #text: datetime.datetime.now().strftime('%H:%M:%S')
+                #text: str(root.text)
+                text: "{}".format(root.time2)
+            Label:
+                text: "iCapotech"
+            
+            Label:
+                id : time1
+                text:"{}".format(root.time1)
+        Image:
+            id: cam1
+            source: 
+            texture:
+            allow_stretch: True
+            texture_size:
+        #Video:
+         #   source: '/home/pi/test.mp4'
+          #  state: 'play'
+           # options: {'allow_stretch': True}
+        #Label:
+         #   id: greet
+          #  text: "Please wait..... \n till the sanitization of \n articles is done"
+           
+            #color : 0,0,0,1
+            #font_size:'70'
+            #size_hint: (0.1,0.1)   #for center alignment before value was 15
+            #pos: (500,500)
+            
+  
+   
+
+<P>:
+    id:pop
+    size_hint: .4, .4
+    auto_dismiss: False
+    title: 'Attention!!'
+    BoxLayout:
+        orientation:'vertical'
+        Label:
+            id: ques
+            text: "Do you have any small articles ?"
+        BoxLayout:
+            orientation : 'horizontal'
+            SmoothButton:
+                id: yes
+                padding_right: 50
+                padding_left: 10
+                padding_top: 20
+                padding_bottom: 10
+                back_color: (0.157,0.455,0.753,1.0)
+                border_radius: [18,2,2,18]
+                text: "Yes \n (Wave your hand \n over Right panel \n to select)"
+                #on_press:
+                    #root.small_articles()
+                on_release:
+                    pop.dismiss()
+                
+                    
+            Label:
+                size_hint_x: 0.3
+            SmoothButton:
+                id: no
+                padding_right: 10
+                padding_left: 50
+                padding_top: 20
+                padding_bottom: 10
+                back_color: (0.157,0.455,0.753,1.0)
+                border_radius: [2,18,18,2]
+                text: "No \n (Wave your hand \n over Left panel \n to select)"
+                #on_press:
+                    #Clock.schedule_once(SecondWindow.go_to3)
+                    #root.next_check()
+                on_release:
+                    pop.dismiss()
+   
+<SmoothButton@Button>:
+    background_color: (0,0,0,0)
+    background_normal: ''
+    back_color: (1,0,1,1)
+    border_radius: [15]
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: self.border_radius
+            
+<StrokeButton@Button>:
+    background_color: (0,0,0,0)
+    background_normal: ''
+    back_color: (1,0,1,1)
+    border_radius: 18
+    color: self.back_color
+    bold: False
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        Line:
+            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],self.border_radius)
